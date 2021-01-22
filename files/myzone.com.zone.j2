@@ -1,0 +1,26 @@
+$TTL 1D
+@   IN SOA  dns.{{ osp_cluster_dns_zone }}   root.dns.{{ osp_cluster_dns_zone }}. (
+                                       2017031330      ; serial
+                                       1D              ; refresh
+                                       1H              ; retry
+                                       1W              ; expire
+                                       3H )            ; minimum
+
+$ORIGIN         {{ osp_cluster_dns_zone }}.
+{{ osp_cluster_dns_zone }}.            IN      NS      dns.{{ osp_cluster_dns_zone }}.
+dns                     IN      A       10.20.0.2
+
+*.apps.{{guid}}		IN	A	10.20.0.112
+ns1.{{guid}}		IN	A	10.20.0.111
+api.{{guid}}		IN	A	10.20.0.110
+api-int.{{guid}}		IN	A	10.20.0.110
+
+*.apps.{{guid2}}		IN	A	10.20.0.113
+ns1.{{guid2}}		IN	A	10.20.0.114
+api.{{guid2}}		IN	A	10.20.0.115
+
+master-0.{{guid2}}	IN	A	10.20.0.100
+master-1.{{guid2}}	IN	A	10.20.0.101
+master-2.{{guid2}}	IN	A	10.20.0.102
+master-3.{{guid}}	IN	A	10.20.0.103
+provision.{{ guid }}	IN	A	10.20.0.2
