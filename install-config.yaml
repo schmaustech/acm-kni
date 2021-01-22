@@ -1,0 +1,48 @@
+apiVersion: v1
+baseDomain: students.osp.opentlc.com
+metadata:
+  name: schmaustech
+networking:
+  networkType: OpenShiftSDN
+  machineCIDR: 10.20.0.0/24
+compute:
+- name: worker
+  replicas: 0
+controlPlane:
+  name: master
+  replicas: 1
+  platform:
+    baremetal: {}
+platform:
+  baremetal:
+    provisioningNetworkCIDR: 172.22.0.0/24
+    provisioningNetworkInterface: ens3
+    apiVIP: 10.20.0.110
+    ingressVIP: 10.20.0.112
+    dnsVIP: 10.20.0.111
+    bootstrapOSImage: http://10.20.0.2/images/rhcos-46.82.202011260640-0-qemu.x86_64.qcow2.gz?sha256=99928ff40c2d8e3aa358d9bd453102e3d1b5e9694fb5d54febc56e275f35da51
+    clusterOSImage: http://10.20.0.2/images/rhcos-46.82.202011260640-0-openstack.x86_64.qcow2.gz?sha256=a8a28cfe5f5e5dadedb3442afcb447f85bddf2e82dcd558813a985a4d495782a
+    hosts:
+      - name: master-3
+        role: master
+        bmc:
+          address: ipmi://10.20.0.3:6200
+          username: admin
+          password: redhat
+        bootMACAddress: de:ad:be:ef:00:43
+        bootMode: legacy
+        hardwareProfile: openstack
+
+sshKey: 'SSHKEY'
+imageContentSources:
+- mirrors:
+  - provision.schmaustech.students.osp.opentlc.com:5000/ocp4/openshift4
+  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+- mirrors:
+  - provision.schmaustech.students.osp.opentlc.com:5000/ocp4/openshift4
+  source: registry.svc.ci.openshift.org/ocp/release
+pullSecret: 'PULLSECRET'
+additionalTrustBundle: |
+  -----BEGIN CERTIFICATE-----
+ CERTIFICATE HERE
+  -----END CERTIFICATE-----
