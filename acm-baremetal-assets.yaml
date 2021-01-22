@@ -1,0 +1,57 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: master-0-bmc-secret
+type: Opaque
+data:
+  password: cmVkaGF0
+  username: YWRtaW4=
+---
+apiVersion: inventory.open-cluster-management.io/v1alpha1
+kind: BareMetalAsset
+metadata:
+  name: master-0
+spec:
+  bmc:
+    address: ipmi://10.20.0.3:6202
+    credentialsName: master-0-bmc-secret
+  bootMACAddress: "de:ad:be:ef:00:40"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: master-1-bmc-secret
+type: Opaque
+data:
+  password: cmVkaGF0
+  username: YWRtaW4=
+---
+apiVersion: inventory.open-cluster-management.io/v1alpha1
+kind: BareMetalAsset
+metadata:
+  name: master-1
+spec:
+  bmc:
+    address: ipmi://10.20.0.3:6201
+    credentialsName: master-1-bmc-secret
+  bootMACAddress: "de:ad:be:ef:00:41"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: master-2-bmc-secret
+type: Opaque
+data:
+  password: cmVkaGF0
+  username: YWRtaW4=
+---
+apiVersion: inventory.open-cluster-management.io/v1alpha1
+kind: BareMetalAsset
+metadata:
+  name: master-2
+spec:
+  bmc:
+    address: ipmi://10.20.0.3:6203
+    credentialsName: master-2-bmc-secret
+  bootMACAddress: "de:ad:be:ef:00:42"
