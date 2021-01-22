@@ -1,0 +1,23 @@
+$TTL 1D
+@   IN SOA  dns.{{ osp_cluster_dns_zone }}   root.dns.{{ osp_cluster_dns_zone }}. (
+                                        2021012100      ; serial
+                                        1D              ; refresh
+                                        1H              ; retry
+                                        1W              ; expire
+                                        3H )            ; minimum
+
+@       IN      NS      dns.{{ osp_cluster_dns_zone }}.
+{{ osp_cluster_dns_zone }}.    IN      NS      dns.{{ osp_cluster_dns_zone }}.
+2 		IN	PTR	dns.{{ osp_cluster_dns_zone }}.
+
+111		IN	PTR	ns1.{{guid}}.{{ osp_cluster_dns_zone }}.
+110		IN	PTR	api.{{guid}}.{{ osp_cluster_dns_zone }}.
+
+114		IN	PTR	ns1.{{guid2}}.{{ osp_cluster_dns_zone }}.
+115		IN	PTR	api.{{guid2}}.{{ osp_cluster_dns_zone }}.
+
+
+100		IN	PTR	master-0.{{guid2}}.{{ osp_cluster_dns_zone }}.
+101		IN	PTR	master-1.{{guid2}}.{{ osp_cluster_dns_zone }}.
+102		IN	PTR	master-2.{{guid2}}.{{ osp_cluster_dns_zone }}.
+103		IN	PTR	master-3.{{guid}}.{{ osp_cluster_dns_zone }}.
