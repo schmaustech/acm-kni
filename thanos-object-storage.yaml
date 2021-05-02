@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: thanos-object-storage
+type: Opaque
+stringData:
+  thanos.yaml: |
+    type: s3
+    config:
+      bucket: obc-schmaustech-bucket-f6508472-4ba6-405d-9e39-881b45a7344e
+      endpoint: s3.openshift-storage.svc
+      insecure: false
+      access_key: Ws6NjFueKwucoehLvUMJ
+      secret_key: rN/90Z3cdebo9RKA+ZbPl+uoyfNbai7K49NJDUJj
+      trace:
+        enable: true
+      http_config:
+        insecure_skip_verify: true
