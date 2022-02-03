@@ -32,7 +32,6 @@ $ cat ~/deploy/snapshot.ver
 2.5.0-DOWNSTREAM-2022-02-03-02-39-53
 ~~~
 12) Apply the ImageContentSourcePolicy to the cluster:
-
 ~~~bash
 $ oc apply -f  ~/deploy/addons/downstream/image-content-source-policy.yaml
 ~~~
@@ -65,7 +64,6 @@ $ oc get secret/pull-secret -n openshift-config -o json | jq '.data.".dockerconf
 ~~~bash
 $ oc get nodes
 ~~~
-
 21) Deploy the MultiCluster Engine (MCE) by executing the commands below.  When asked for the snapshot version use the same one used in step 11:
 ~~~
 export DOWNSTREAM=true
