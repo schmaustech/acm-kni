@@ -31,24 +31,8 @@ type: kubernetes.io/dockerconfigjson
 $ cat ~/deploy/snapshot.ver 
 2.2.0-DOWNSTREAM-2021-01-28-15-20-59
 ~~~
-12) Create an ImageContentSourcePolicy and apply it to the cluster.  The contents of that policy should look like the one below:
-~~~bash
-$ cat ~/icsp.yaml
-apiVersion: operator.openshift.io/v1alpha1
-kind: ImageContentSourcePolicy
-metadata:
-  name: rhacm-repo
-spec:
-  repositoryDigestMirrors:
-  - mirrors:
-    - quay.io:443/acm-d
-    source: registry.redhat.io/rhacm2
-  - mirrors:
-    - registry.redhat.io/openshift4/ose-oauth-proxy
-    source: registry.access.redhat.com/openshift4/ose-oauth-proxy
-$ oc apply -f ~/icsp.yaml
-~~~
-Note:  As an alternate to creating the above there is an ImageContentSourcePolicy also in the Github repository that was cloned.  Just make sure it looks like the above before running the command:
+12) Apply the ImageContentSourcePolicy to the cluster:
+
 ~~~bash
 $ oc apply -f  ~/deploy/addons/downstream/image-content-source-policy.yaml
 ~~~
